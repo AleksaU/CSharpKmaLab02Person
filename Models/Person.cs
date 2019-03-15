@@ -28,10 +28,10 @@ namespace Lab02Utkina.Models
             _isBirthday = CheckBirthday();
         }
 
-      //  Когда приходится работать с перегружаемыми конструкторами, то иногда очень полезно предоставить возможность одному конструктору вызывать другой.В C# это дается с помощью ключевого слова this. 
-        public Person(string name, string surName, string email):this(name,surName, email, DateTime.MaxValue) { }
+        //  Когда приходится работать с перегружаемыми конструкторами, то иногда очень полезно предоставить возможность одному конструктору вызывать другой.В C# это дается с помощью ключевого слова this. 
+        public Person(string name, string surName, string email) : this(name, surName, email, DateTime.MaxValue) { }
 
-        public Person(string name, string surName,DateTime birthDate): this(name,surName,"noemail", birthDate) { }
+        public Person(string name, string surName, DateTime birthDate) : this(name, surName, "noemail", birthDate) { }
 
 
         public string Name
@@ -149,7 +149,7 @@ namespace Lab02Utkina.Models
             }
         }
 
-       public string CalcSunSign()
+        public string CalcSunSign()
         {
             if (((_birthDate.Month == 3) && (_birthDate.Day >= 21 || _birthDate.Day <= 31)) || ((_birthDate.Month == 4) && (_birthDate.Day >= 01 || _birthDate.Day <= 20)))
             {
@@ -257,11 +257,13 @@ namespace Lab02Utkina.Models
 
         public bool CheckBirthday()
         {
-            if (_birthDate.DayOfYear == DateTime.Today.Day && _birthDate.Month == DateTime.Today.Month) { 
+            if (_birthDate.DayOfYear == DateTime.Today.Day && _birthDate.Month == DateTime.Today.Month)
+            {
 
-            return true;
-        }
-            else {
+                return true;
+            }
+            else
+            {
                 return false;
             }
         }
