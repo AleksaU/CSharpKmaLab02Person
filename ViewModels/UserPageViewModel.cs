@@ -69,7 +69,6 @@ namespace Lab02Utkina.ViewModels
             }
             set
             {
-                //   _birthDate = Convert.ToDateTime(value);
                 _birthDate = value;
                 OnPropertyChanged();
             }
