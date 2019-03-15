@@ -15,12 +15,12 @@ namespace Lab02Utkina.ViewModels
         private string _email;
         private DateTime _birthDate;
 
-        private readonly bool _isAdult;
-        private readonly string _sunSign;
-        private readonly string _chineseSign;
-        private readonly bool _isBirthday;
+        private bool _isAdult;
+        private string _sunSign;
+        private string _chineseSign;
+        private bool _isBirthday;
 
-       
+
         private RelayCommand<object> _proceedCommand;
 
 
@@ -30,14 +30,14 @@ namespace Lab02Utkina.ViewModels
             {
                 return _name;
             }
-            private set
+           set
             {
                 _name = value;
                 OnPropertyChanged();
             }
         }
 
-        public string SurName
+        public string Surname
         {
             get
             {
@@ -61,15 +61,16 @@ namespace Lab02Utkina.ViewModels
                 OnPropertyChanged();
             }
         }
-        public string BirthDate
+        public DateTime BirthDate
         {
             get
             {
-                return ("birth " + _birthDate);
+                return (_birthDate);
             }
             set
             {
-                _birthDate = Convert.ToDateTime(value);
+                //   _birthDate = Convert.ToDateTime(value);
+                _birthDate = value;
                 OnPropertyChanged();
             }
         }
@@ -85,23 +86,23 @@ namespace Lab02Utkina.ViewModels
                            {
                                Person person = new Person(_name, _surName, _email, _birthDate);
                                MessageBox.Show(
-                                                           $"First name: {person.Name}\n" +
-                                                           $"Last name: {person.Surname}\n" +
-                                                           $"Email: {person.Email}\n" +
-                                                           $"Date of birth: {person.BirthDate}\n" +
-                                                           $"Adult: {person.IsAdult}\n" +
-                                                           $"Our Sign: {person.SunSign}\n" +
-                                                           $"Chinese Sign: {person.ChineseSign}\n" +
-                                                           $"{person}"
-                                                       );
-
+                                                                   $"Your First name is: {person.Name}\n" +
+                                                                   $"Your Surname is: {person.Surname}\n" +
+                                                                   $"Your Email is: {person.Email}\n" +
+                                                                   $"Your Date of birth is: {person.BirthDate}\n" +
+                                                                   $"Are you an Adult: {person.IsAdult}\n" +
+                                                                   $"Your SunSign is: {person.SunSign}\n" +
+                                                                   $"Your Chinese Sign is: {person.ChineseSign}\n" +
+                                                                   $"{person}"
+                                                               );
+                             
                            }, o => CanExecuteCommand()));
             }
         }
 
         private bool CanExecuteCommand()
         {
-            return !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_surName) && !string.IsNullOrWhiteSpace(_email);
+         return !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_surName) && !string.IsNullOrWhiteSpace(_email);
         }
 
 
@@ -117,3 +118,4 @@ namespace Lab02Utkina.ViewModels
 
     }
 }
+
