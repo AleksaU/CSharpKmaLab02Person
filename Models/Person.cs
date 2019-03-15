@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 
 namespace Lab02Utkina.Models
 {
@@ -26,6 +27,8 @@ namespace Lab02Utkina.Models
             _sunSign = CalcSunSign();
             _chineseSign = CalcChineseSign();
             _isBirthday = CheckBirthday();
+
+            
         }
 
         //  Когда приходится работать с перегружаемыми конструкторами, то иногда очень полезно предоставить возможность одному конструктору вызывать другой.В C# это дается с помощью ключевого слова this. 
@@ -121,7 +124,6 @@ namespace Lab02Utkina.Models
         public int CalculateAge()
         {
 
-
             DateTime today = DateTime.Today;
             int ageNow = today.Year - _birthDate.Year;
 
@@ -130,13 +132,18 @@ namespace Lab02Utkina.Models
                 ageNow--;
             }
 
+           if ((ageNow < 0) || (ageNow > 135))
+            {
+                string message = "You didn't enter your birthday right.";
+                string caption = "Something doesn't seem right!";
+                MessageBox.Show(message, caption);
 
-
-            return ageNow;
+            }
+                return ageNow;
         }
 
 
-        public bool CheckAdult()
+         public bool CheckAdult()
         {
 
             if (CalculateAge() >= 18)
@@ -151,52 +158,52 @@ namespace Lab02Utkina.Models
 
         public string CalcSunSign()
         {
-            if (((_birthDate.Month == 3) && (_birthDate.Day >= 21 || _birthDate.Day <= 31)) || ((_birthDate.Month == 4) && (_birthDate.Day >= 01 || _birthDate.Day <= 20)))
+            if (((_birthDate.Month == 3) && (_birthDate.Day >= 21 && _birthDate.Day <= 31)) || ((_birthDate.Month == 4) && (_birthDate.Day >= 01 && _birthDate.Day <= 20)))
             {
                 return "Aires";
             }
-            if (((_birthDate.Month == 4) && (_birthDate.Day >= 21 || _birthDate.Day <= 31)) || ((_birthDate.Month == 5) && (_birthDate.Day >= 01 || _birthDate.Day <= 21)))
+            if (((_birthDate.Month == 4) && (_birthDate.Day >= 21 && _birthDate.Day <= 31)) || ((_birthDate.Month == 5) && (_birthDate.Day >= 01 && _birthDate.Day <= 21)))
             {
                 return "Taurus";
             }
 
-            if (((_birthDate.Month == 5) && (_birthDate.Day >= 21 || _birthDate.Day <= 31)) || ((_birthDate.Month == 6) && (_birthDate.Day >= 01 || _birthDate.Day <= 21)))
+            if (((_birthDate.Month == 5) && (_birthDate.Day >= 21 && _birthDate.Day <= 31)) || ((_birthDate.Month == 6) && (_birthDate.Day >= 01 && _birthDate.Day <= 21)))
             {
                 return "Gemini";
             }
-            if (((_birthDate.Month == 6) && (_birthDate.Day >= 22 || _birthDate.Day <= 31)) || ((_birthDate.Month == 7) && (_birthDate.Day >= 01 || _birthDate.Day <= 22)))
+            if (((_birthDate.Month == 6) && (_birthDate.Day >= 22 && _birthDate.Day <= 31)) || ((_birthDate.Month == 7) && (_birthDate.Day >= 01 && _birthDate.Day <= 22)))
             {
                 return "Cancer";
             }
-            if (((_birthDate.Month == 7) && (_birthDate.Day >= 23 || _birthDate.Day <= 31)) || ((_birthDate.Month == 8) && (_birthDate.Day >= 01 || _birthDate.Day <= 22)))
+            if (((_birthDate.Month == 7) && (_birthDate.Day >= 23 && _birthDate.Day <= 31)) || ((_birthDate.Month == 8) && (_birthDate.Day >= 01 && _birthDate.Day <= 22)))
             {
                 return "leo";
             }
-            if (((_birthDate.Month == 8) && (_birthDate.Day >= 23 || _birthDate.Day <= 31)) || ((_birthDate.Month == 9) && (_birthDate.Day >= 01 || _birthDate.Day <= 21)))
+            if (((_birthDate.Month == 8) && (_birthDate.Day >= 23 && _birthDate.Day <= 31)) || ((_birthDate.Month == 9) && (_birthDate.Day >= 01 && _birthDate.Day <= 21)))
             {
                 return "Virgo";
             }
-            if (((_birthDate.Month == 9) && (_birthDate.Day >= 22 || _birthDate.Day <= 30)) || ((_birthDate.Month == 10) && (_birthDate.Day >= 01 || _birthDate.Day <= 22)))
+            if (((_birthDate.Month == 9) && (_birthDate.Day >= 22 && _birthDate.Day <= 30)) || ((_birthDate.Month == 10) && (_birthDate.Day >= 01 && _birthDate.Day <= 22)))
             {
                 return "Libra";
             }
-            if (((_birthDate.Month == 10) && (_birthDate.Day >= 23 || _birthDate.Day <= 31)) || ((_birthDate.Month == 11) && (_birthDate.Day >= 01 || _birthDate.Day <= 21)))
+            if (((_birthDate.Month == 10) && (_birthDate.Day >= 23 && _birthDate.Day <= 31)) || ((_birthDate.Month == 11) && (_birthDate.Day >= 01 && _birthDate.Day <= 21)))
             {
                 return "Scorpio";
             }
-            if (((_birthDate.Month == 11) && (_birthDate.Day >= 22 || _birthDate.Day <= 30)) || ((_birthDate.Month == 12) && (_birthDate.Day >= 01 || _birthDate.Day <= 21)))
+            if (((_birthDate.Month == 11) && (_birthDate.Day >= 22 && _birthDate.Day <= 30)) || ((_birthDate.Month == 12) && (_birthDate.Day >= 01 && _birthDate.Day <= 21)))
             {
                 return "Sagittarius";
             }
-            if (((_birthDate.Month == 12) && (_birthDate.Day >= 22 || _birthDate.Day <= 31)) || ((_birthDate.Month == 1) && (_birthDate.Day >= 01 || _birthDate.Day <= 20)))
+            if (((_birthDate.Month == 12) && (_birthDate.Day >= 22 && _birthDate.Day <= 31)) || ((_birthDate.Month == 1) && (_birthDate.Day >= 01 && _birthDate.Day <= 20)))
             {
                 return "Capricorn";
             }
-            if (((_birthDate.Month == 1) && (_birthDate.Day >= 21 || _birthDate.Day <= 30)) || ((_birthDate.Month == 2) && (_birthDate.Day >= 01 || _birthDate.Day <= 19)))
+            if (((_birthDate.Month == 1) && (_birthDate.Day >= 21 && _birthDate.Day <= 30)) || ((_birthDate.Month == 2) && (_birthDate.Day >= 01 && _birthDate.Day <= 19)))
             {
                 return "Aquarius";
             }
-            if (((_birthDate.Month == 2) && (_birthDate.Day >= 20 || _birthDate.Day <= 31)) || ((_birthDate.Month == 3) && (_birthDate.Day >= 01 || _birthDate.Day <= 20)))
+            if (((_birthDate.Month == 2) && (_birthDate.Day >= 20 && _birthDate.Day <= 31)) || ((_birthDate.Month == 3) && (_birthDate.Day >= 01 && _birthDate.Day <= 20)))
             {
                 return "Pisces";
             }

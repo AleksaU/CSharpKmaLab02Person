@@ -85,6 +85,7 @@ namespace Lab02Utkina.ViewModels
                            o =>
                            {
                                Person person = new Person(_name, _surName, _email, _birthDate);
+                               
                                MessageBox.Show(
                                                                    $"Your First name is: {person.Name}\n" +
                                                                    $"Your Surname is: {person.Surname}\n" +
@@ -95,14 +96,23 @@ namespace Lab02Utkina.ViewModels
                                                                    $"Your Chinese Sign is: {person.ChineseSign}\n" +
                                                                    $"{person}"
                                                                );
-                             
+
+                              
+                               
+           
+                               if (_birthDate.Day == DateTime.Today.Day && _birthDate.Month == DateTime.Today.Month)
+                                   MessageBox.Show("Happy b-day to you!");
+
+
                            }, o => CanExecuteCommand()));
             }
         }
 
         private bool CanExecuteCommand()
         {
-         return !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_surName) && !string.IsNullOrWhiteSpace(_email);
+         return  !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_surName) && !string.IsNullOrWhiteSpace(_email)  ;
+
+
         }
 
 
