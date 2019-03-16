@@ -37,8 +37,9 @@ namespace Lab02Utkina.Models
         }
 
         //  Когда приходится работать с перегружаемыми конструкторами, то иногда очень полезно предоставить возможность одному конструктору вызывать другой.В C# это дается с помощью ключевого слова this. 
-        public Person(string name, string surName, string email) : this(name, surName, email, DateTime.MaxValue) { }
+        // public Person(string name, string surName, string email) : this(name, surName, email, DateTime.MaxValue) { }
 
+        public Person(string name, string surName, string email) : this(name, surName, email, DateTime.MaxValue) { }
         public Person(string name, string surName, DateTime birthDate) : this(name, surName, "noemail", birthDate) { }
 
 

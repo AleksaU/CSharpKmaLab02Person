@@ -86,15 +86,14 @@ namespace Lab02Utkina.ViewModels
 
                 {
                     try
-                    {
+                    {                       
 
-
-                        Person person = new Person(_name, _surName, _email, _birthDate);
-                    
-
-                    
+                        Person person = new Person(_name, _surName, _email, _birthDate);                     
 
                         MessageBox.Show(
+
+
+                      
                                                                        $"Your First name is: {person.Name}\n" +
                                                                        $"Your Surname is: {person.Surname}\n" +
                                                                        $"Your Email is: {person.Email}\n" +
@@ -104,6 +103,7 @@ namespace Lab02Utkina.ViewModels
                                                                        $"Your Chinese Sign is: {person.ChineseSign}\n" +
                                                                        $"{person}"
                                                                    );
+
 
                     }
                     catch (EmailException ex)
@@ -142,7 +142,11 @@ namespace Lab02Utkina.ViewModels
 
         private bool CanExecuteCommand()
         {
-         return  !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_surName) && !string.IsNullOrWhiteSpace(_email)  ;
+            
+           // DateTime dt = new DateTime(0001, 01, 01, 00, 00, 0);
+           
+            return !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_surName) && !string.IsNullOrWhiteSpace(_email) && !(_birthDate == new DateTime(0001, 01, 01, 00, 00, 0));
+                ;
 
 
         }
