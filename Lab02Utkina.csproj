@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\Exceptions\EmailException.cs" />
     <Compile Include="Models\Exceptions\FutureBirthException.cs" />
+    <Compile Include="Models\Exceptions\PastBirthException.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Tools\RelayCommand.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

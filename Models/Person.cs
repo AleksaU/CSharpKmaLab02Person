@@ -21,7 +21,7 @@ namespace Lab02Utkina.Models
         {
             emailValidation(email);
             futureBirthValidation(birthDate);
-
+            pastBirthValidation(birthDate);
 
             _name = name;
             _surName = surName;
@@ -302,6 +302,21 @@ namespace Lab02Utkina.Models
             }
 
         }
+
+        private void pastBirthValidation(DateTime birthDate)
+        {
+            if (birthDate.Year < 1899)
+            {
+
+                throw new PastBirthException("", birthDate);
+            }
+
+        }
+
+        
+
+
+
 
         private bool IsEmailSyntaxValid(string emailToValidate)
         {

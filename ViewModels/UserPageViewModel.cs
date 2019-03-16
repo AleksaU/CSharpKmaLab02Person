@@ -122,6 +122,13 @@ namespace Lab02Utkina.ViewModels
                        
                     }
 
+                    catch (PastBirthException e)
+                    {
+
+                        //MessageBox.Show("Произошла ошибка: " + ex.Message);
+                        MessageBox.Show("" + e.Message);
+
+                    }
 
 
 
