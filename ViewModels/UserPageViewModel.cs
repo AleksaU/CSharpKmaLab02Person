@@ -4,6 +4,7 @@ using Lab02Utkina.Tools;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Lab02Utkina.ViewModels
@@ -76,78 +77,147 @@ namespace Lab02Utkina.ViewModels
         }
 
 
-
         public RelayCommand<Object> ProceedCommand
         {
             get
             {
                 return _proceedCommand ?? (_proceedCommand = new RelayCommand<object>(
-                           o =>
-
-                {
-                    try
-                    {                       
-
-                        Person person = new Person(_name, _surName, _email, _birthDate);                     
-
-                        MessageBox.Show(
-
-
-                      
-                                                                       $"Your First name is: {person.Name}\n" +
-                                                                       $"Your Surname is: {person.Surname}\n" +
-                                                                       $"Your Email is: {person.Email}\n" +
-                                                                       $"Your Date of birth is: {person.BirthDate}\n" +
-                                                                       $"Are you an Adult: {person.IsAdult}\n" +
-                                                                       $"Your SunSign is: {person.SunSign}\n" +
-                                                                       $"Your Chinese Sign is: {person.ChineseSign}\n" +
-                                                                       $"{person}"
-                                                                   );
-
-
-                    }
-                    catch (EmailException ex)
-                    {
-
-                        //MessageBox.Show("Произошла ошибка: " + ex.Message);
-                        MessageBox.Show("" + ex.Message);
-                        //futureBirthValidation(birthDate);
-                    }
-
-                    catch (FutureBirthException e)
-                    {
-
-                        //MessageBox.Show("Произошла ошибка: " + ex.Message);
-                        MessageBox.Show("" + e.Message);
-                       
-                    }
-
-                    catch (PastBirthException e)
-                    {
-
-                        //MessageBox.Show("Произошла ошибка: " + ex.Message);
-                        MessageBox.Show("" + e.Message);
-
-                    }
-
-
-
-                    if (_birthDate.Day == DateTime.Today.Day && _birthDate.Month == DateTime.Today.Month)
-                                   MessageBox.Show("Happy b-day to you!");
-
-
-                           }, o => CanExecuteCommand()));
+                      CreatePerson, o => CanExecuteCommand()));
             }
         }
 
+        private async void CreatePerson(object o)
+        {
+            await Task.Run((() =>
+            {
+                try
+                {
+
+                    Person person = new Person(_name, _surName, _email, _birthDate);
+
+                    MessageBox.Show(
+
+
+
+                                                                   $"Your First name is: {person.Name}\n" +
+                                                                   $"Your Surname is: {person.Surname}\n" +
+                                                                   $"Your Email is: {person.Email}\n" +
+                                                                   $"Your Date of birth is: {person.BirthDate}\n" +
+                                                                   $"Are you an Adult: {person.IsAdult}\n" +
+                                                                   $"Your SunSign is: {person.SunSign}\n" +
+                                                                   $"Your Chinese Sign is: {person.ChineseSign}\n" +
+                                                                   $"{person}"
+                                                               );
+
+
+                }
+                catch (EmailException ex)
+                {
+
+                    MessageBox.Show("" + ex.Message);
+                   
+                }
+
+                catch (FutureBirthException e)
+                {
+                  
+                    MessageBox.Show("" + e.Message);
+
+                }
+
+                catch (PastBirthException e)
+                {
+
+                    //MessageBox.Show("Произошла ошибка: " + ex.Message);
+                    MessageBox.Show("" + e.Message);
+
+                }
+
+
+
+                if (_birthDate.Day == DateTime.Today.Day && _birthDate.Month == DateTime.Today.Month)
+                {
+                    MessageBox.Show("Happy b-day to you!");
+
+
+                }
+            }
+                //, o => CanExecuteCommand()));
+            ));
+
+        }
+
+
+        #region method without async/await
+        /*
+            public RelayCommand<Object> ProceedCommand
+            {
+                get
+                {
+                    return _proceedCommand ?? (_proceedCommand = new RelayCommand<object>(
+                               o => 
+
+                    {
+                        try
+                        {                       
+
+                            Person person = new Person(_name, _surName, _email, _birthDate);                     
+
+                            MessageBox.Show(
+
+
+
+                                                                           $"Your First name is: {person.Name}\n" +
+                                                                           $"Your Surname is: {person.Surname}\n" +
+                                                                           $"Your Email is: {person.Email}\n" +
+                                                                           $"Your Date of birth is: {person.BirthDate}\n" +
+                                                                           $"Are you an Adult: {person.IsAdult}\n" +
+                                                                           $"Your SunSign is: {person.SunSign}\n" +
+                                                                           $"Your Chinese Sign is: {person.ChineseSign}\n" +
+                                                                           $"{person}"
+                                                                       );
+
+
+                        }
+                        catch (EmailException ex)
+                        {
+
+                            //MessageBox.Show("Произошла ошибка: " + ex.Message);
+                            MessageBox.Show("" + ex.Message);
+                            //futureBirthValidation(birthDate);
+                        }
+
+                        catch (FutureBirthException e)
+                        {
+
+                            //MessageBox.Show("Произошла ошибка: " + ex.Message);
+                            MessageBox.Show("" + e.Message);
+
+                        }
+
+                        catch (PastBirthException e)
+                        {
+
+                            //MessageBox.Show("Произошла ошибка: " + ex.Message);
+                            MessageBox.Show("" + e.Message);
+
+                        }
+
+
+
+                        if (_birthDate.Day == DateTime.Today.Day && _birthDate.Month == DateTime.Today.Month)
+                                       MessageBox.Show("Happy b-day to you!");
+
+
+                               }, o => CanExecuteCommand()));
+                }
+            }
+            */
+        #endregion
         private bool CanExecuteCommand()
         {
-            
-           // DateTime dt = new DateTime(0001, 01, 01, 00, 00, 0);
-           
             return !string.IsNullOrWhiteSpace(_name) && !string.IsNullOrWhiteSpace(_surName) && !string.IsNullOrWhiteSpace(_email) && !(_birthDate == new DateTime(0001, 01, 01, 00, 00, 0));
                 ;
-
 
         }
 
@@ -159,9 +229,6 @@ namespace Lab02Utkina.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
-
     }
 }
 
