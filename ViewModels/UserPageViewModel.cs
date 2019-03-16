@@ -1,4 +1,5 @@
 ﻿using Lab02Utkina.Models;
+using Lab02Utkina.Models.Exceptions;
 using Lab02Utkina.Tools;
 using System;
 using System.ComponentModel;
@@ -82,24 +83,39 @@ namespace Lab02Utkina.ViewModels
             {
                 return _proceedCommand ?? (_proceedCommand = new RelayCommand<object>(
                            o =>
-                           {
-                               Person person = new Person(_name, _surName, _email, _birthDate);
-                               
-                               MessageBox.Show(
-                                                                   $"Your First name is: {person.Name}\n" +
-                                                                   $"Your Surname is: {person.Surname}\n" +
-                                                                   $"Your Email is: {person.Email}\n" +
-                                                                   $"Your Date of birth is: {person.BirthDate}\n" +
-                                                                   $"Are you an Adult: {person.IsAdult}\n" +
-                                                                   $"Your SunSign is: {person.SunSign}\n" +
-                                                                   $"Your Chinese Sign is: {person.ChineseSign}\n" +
-                                                                   $"{person}"
-                                                               );
 
-                              
-                               
-           
-                               if (_birthDate.Day == DateTime.Today.Day && _birthDate.Month == DateTime.Today.Month)
+                {
+                    try
+                    {
+
+
+                        Person person = new Person(_name, _surName, _email, _birthDate);
+                    
+
+                    
+
+                        MessageBox.Show(
+                                                                       $"Your First name is: {person.Name}\n" +
+                                                                       $"Your Surname is: {person.Surname}\n" +
+                                                                       $"Your Email is: {person.Email}\n" +
+                                                                       $"Your Date of birth is: {person.BirthDate}\n" +
+                                                                       $"Are you an Adult: {person.IsAdult}\n" +
+                                                                       $"Your SunSign is: {person.SunSign}\n" +
+                                                                       $"Your Chinese Sign is: {person.ChineseSign}\n" +
+                                                                       $"{person}"
+                                                                   );
+
+                    }
+                    catch (EmailException ex)
+                    {
+
+                        //MessageBox.Show("Произошла ошибка: " + ex.Message);
+                        MessageBox.Show("" + ex.Message);
+
+                    }
+
+
+                    if (_birthDate.Day == DateTime.Today.Day && _birthDate.Month == DateTime.Today.Month)
                                    MessageBox.Show("Happy b-day to you!");
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab02Utkina.Models.Exceptions;
+using System;
 using System.Windows;
 
 namespace Lab02Utkina.Models
@@ -18,6 +19,9 @@ namespace Lab02Utkina.Models
 
         public Person(string name, string surName, string email, DateTime birthDate)
         {
+            emailValidation(email);
+
+
             _name = name;
             _surName = surName;
             _email = email;
@@ -46,6 +50,8 @@ namespace Lab02Utkina.Models
             set
             {
                 _name = value;
+
+
 
             }
         }
@@ -274,6 +280,22 @@ namespace Lab02Utkina.Models
                 return false;
             }
         }
+
+
+        private void emailValidation(string email)
+        {
+            if(IsEmailSyntaxValid(email) != true)
+            {
+                throw new EmailException("Incorrect email format! It should be 'david.jones@proseware.com'. But you have: " + email);
+            }
+
+        }
+
+        private bool IsEmailSyntaxValid(string emailToValidate)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(emailToValidate,@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
+        }
+
     }
 }
 
