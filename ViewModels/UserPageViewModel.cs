@@ -104,6 +104,7 @@ namespace Lab02Utkina.ViewModels
                                                                    $"Your Email is: {person.Email}\n" +
                                                                    $"Your Date of birth is: {person.BirthDate}\n" +
                                                                    $"Are you an Adult: {person.IsAdult}\n" +
+                                                                   $"You are: {person.CalculateAge()} years old\n" +
                                                                    $"Your SunSign is: {person.SunSign}\n" +
                                                                    $"Your Chinese Sign is: {person.ChineseSign}\n" +
                                                                    $"{person}"
