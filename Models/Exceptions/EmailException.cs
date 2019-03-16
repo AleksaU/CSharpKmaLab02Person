@@ -19,7 +19,7 @@ namespace Lab02Utkina.Models.Exceptions
 
             }
 
-            //Возвращает код ошибки
+           
             public string Message {
 
             get

@@ -20,6 +20,7 @@ namespace Lab02Utkina.Models
         public Person(string name, string surName, string email, DateTime birthDate)
         {
             emailValidation(email);
+            futureBirthValidation(birthDate);
 
 
             _name = name;
@@ -138,13 +139,13 @@ namespace Lab02Utkina.Models
                 ageNow--;
             }
 
-           if ((ageNow < 0) || (ageNow > 135))
+       /*    if ((ageNow < 0) || (ageNow > 135))
             {
                 string message = "You didn't enter your birthday right.";
                 string caption = "Something doesn't seem right!";
                 MessageBox.Show(message, caption);
 
-            }
+            }*/
                 return ageNow;
         }
 
@@ -287,6 +288,17 @@ namespace Lab02Utkina.Models
             if(IsEmailSyntaxValid(email) != true)
             {
                 throw new EmailException("Incorrect email format! It should be 'david.jones@proseware.com'. But you have: " + email);
+            }
+
+        }
+
+        private void futureBirthValidation(DateTime birthDate)
+        {
+            // if (birthDate.DayOfYear > DateTime.Today.Day && birthDate.Month > DateTime.Today.Month && birthDate.Year > DateTime.Today.Year)
+            if (birthDate > DateTime.Now)
+            {
+
+                throw new FutureBirthException("",birthDate);
             }
 
         }

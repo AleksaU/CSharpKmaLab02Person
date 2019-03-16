@@ -111,8 +111,18 @@ namespace Lab02Utkina.ViewModels
 
                         //MessageBox.Show("Произошла ошибка: " + ex.Message);
                         MessageBox.Show("" + ex.Message);
-
+                        //futureBirthValidation(birthDate);
                     }
+
+                    catch (FutureBirthException e)
+                    {
+
+                        //MessageBox.Show("Произошла ошибка: " + ex.Message);
+                        MessageBox.Show("" + e.Message);
+                       
+                    }
+
+
 
 
                     if (_birthDate.Day == DateTime.Today.Day && _birthDate.Month == DateTime.Today.Month)
